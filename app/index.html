@@ -5,13 +5,8 @@
   </head>
   <body>
     <h1>Hello World!</h1>
+    <div id="content"></div>
     We are using io.js
-    <div id="container"></div>
-    <script>
-      window.onload = function(){
-        require('babel-register')() //ここ重要
-        require("./client/main.jsx")
-      }
-    </script>
+    <script src="../build/build.js"></script>
   </body>
 </html>
