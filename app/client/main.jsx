@@ -10,67 +10,16 @@ var Body = require('./views/body.jsx');
 var UserBox = require('./views/userbox.jsx');
 var Footer = require('./views/footer.jsx');
 
+var HOST = 'http://www.shigemk2.com';
 var Index = React.createClass({
     render: function(){
-        return (
-            <div>
-                {this.props.children}
-            </div>
-        );
+        return $.ajax({
+            url: HOST
+        });
     }
 });
 
-var Top = React.createClass({
-    mixins: [ History ],
-
-    handleSubmit:function(e){
-        e.preventDefault();
-        this.history.pushState(null, '/portal');
-    },
-    render:function(){
-        return (
-            <div>
-                <div className="main">
-                    <h1>Login</h1>
-                    <form onSubmit={this.handleSubmit}>
-                        <input placeholder="userid"/>
-                        <input placeholder="password"/>
-                        <div style={{textAlign:"cener"}}>
-                            <button type="submit">Login</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        );
-    }
-});
-
-var Main = React.createClass({
-    render:function(){
-        return (
-            <div>
-                <Header/>
-                <div className="main">
-                    {this.props.children}
-                </div>
-                <Footer/>
-            </div>
-        );
-    }
-});
-
-var Routes = (
-    <Route path="/" component={Index}>
-        <IndexRoute component={Top}/>
-        <Route path="/top" component={Top}/>
-        <Route path="/portal" component={Main}>
-            <IndexRoute component={Body}/>
-            <Route path="/userbox" component={UserBox}/>
-        </Route>
-    </Route>
-);
 
 ReactDOM.render(
-    <Router>{Routes}</Router>,
     document.getElementById('content')
 );
