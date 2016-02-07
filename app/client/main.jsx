@@ -25,21 +25,18 @@ var Top = React.createClass({
 
     handleSubmit:function(e){
         e.preventDefault();
-        /* ログイン処理 */
-
-        //ポータルページへ
         this.history.pushState(null, '/portal');
     },
     render:function(){
         return (
             <div>
                 <div className="main">
-                    <h1>ログイン</h1>
+                    <h1>Login</h1>
                     <form onSubmit={this.handleSubmit}>
                         <input placeholder="userid"/>
                         <input placeholder="password"/>
                         <div style={{textAlign:"cener"}}>
-                            <button type="submit">ログイン</button>
+                            <button type="submit">Login</button>
                         </div>
                     </form>
                 </div>

@@ -2,14 +2,12 @@ var React = require('react');
 var ReactDOM = require('react-dom');
 var request = require('superagent');
 
-//フォームとリストを一つにしたもの
 var UserBox = React.createClass({
   getInitialState:function(){
     return {userData:[]};
   },
   getUsers:function(name, mail) {
     var url = "/get_users";
-    //ajax通信する
     request
       .get(url)
       .query({})
@@ -18,13 +16,11 @@ var UserBox = React.createClass({
           alert(res.text);
         }
         var map = JSON.parse(res.text);
-        //表示されている値を更新
         this.setState({userData: map});
       }.bind(this));
   },
   handleAddUser:function(name, mail){
     var url = "/post_user";
-    //ajax通信する
     request
       .post(url)
       .send({name: name, mail: mail})
@@ -33,7 +29,6 @@ var UserBox = React.createClass({
           alert(res.text);
         }
         var map = JSON.parse(res.text);
-        //表示されている値を更新
         this.setState({userData: map});
       }.bind(this));
   },
@@ -51,7 +46,6 @@ var UserBox = React.createClass({
   }
 });
 
-//リスト一行分を表示するコンポーネントを定義
 var User = React.createClass({
   propTypes:{
     name: React.PropTypes.string.isRequired,
@@ -67,7 +61,6 @@ var User = React.createClass({
   }
 });
 
-//リストそのものを表示するコンポーネントを定義
 var UserList = React.createClass({
   propTypes:{
     userData:React.PropTypes.arrayOf(React.PropTypes.object).isRequired
@@ -82,8 +75,8 @@ var UserList = React.createClass({
       <table>
         <tbody>
           <tr>
-            <th>名前</th>
-            <th>メールアドレス</th>
+            <th>Name</th>
+            <th>Mail Address</th>
           </tr>
           {UserNodes}
         </tbody>
@@ -92,7 +85,6 @@ var UserList = React.createClass({
   }
 });
 
-//ユーザーの入力フォームを定義
 var UserForm = React.createClass({
   propTypes:{
     addUser:React.PropTypes.func.isRequired
@@ -114,7 +106,7 @@ var UserForm = React.createClass({
           <tbody>
             <tr>
               <td>
-                <label>名前</label>
+                <label>Name</label>
               </td>
               <td>
                 <input type="text" ref="name"/>
@@ -122,7 +114,7 @@ var UserForm = React.createClass({
             </tr>
             <tr>
               <td>
-                <label>メールアドレス</label>
+                <label>Mail Address</label>
               </td>
               <td>
                 <input type="text" ref="mail"/>
@@ -131,7 +123,7 @@ var UserForm = React.createClass({
           </tbody>
         </table>
         <div style={{textAlign:"right"}}>
-          <button onClick={this.handleSubmit}>追加</button>
+          <button onClick={this.handleSubmit}>ADD</button>
         </div>
       </div>
     );
